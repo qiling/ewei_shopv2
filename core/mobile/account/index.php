@@ -100,10 +100,10 @@ class Index_EweiShopV2Page extends MobilePage
 				show_json(0, '请输入密码');
 			}
 
-			$key = '__ewei_shopv2_member_verifycodesession_' . $_W['uniacid'] . '_' . $mobile;
+			/*$key = '__ewei_shopv2_member_verifycodesession_' . $_W['uniacid'] . '_' . $mobile;
 			if (!isset($_SESSION[$key]) || ($_SESSION[$key] !== $verifycode) || !isset($_SESSION['verifycodesendtime']) || (($_SESSION['verifycodesendtime'] + 600) < time())) {
 				show_json(0, '验证码错误或已过期!');
-			}
+			}*/
 
 			$member = pdo_fetch('select id,openid,mobile,pwd,salt from ' . tablename('ewei_shop_member') . ' where mobile=:mobile and mobileverify=1 and uniacid=:uniacid limit 1', array(':mobile' => $mobile, ':uniacid' => $_W['uniacid']));
 
@@ -148,7 +148,7 @@ class Index_EweiShopV2Page extends MobilePage
 				p('commission')->checkAgent($openid);
 			}
 
-			unset($_SESSION[$key]);
+			/*unset($_SESSION[$key]);*/
 			show_json(1, empty($type) ? '注册成功' : '密码重置成功');
 		}
 
